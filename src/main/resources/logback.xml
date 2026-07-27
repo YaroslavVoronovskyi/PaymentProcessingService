@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <property name="APP_NAME" value="PaymentProcessingService"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%c:%t]- %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="APPLICATION" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/app/${APP_NAME}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>logs/app/${APP_NAME}.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>10MB</maxFileSize>
+            <maxHistory>14</maxHistory>
+            <totalSizeCap>200MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%c:%t]- %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="SPRING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/spring/SPRING-${APP_NAME}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>logs/spring/SPRING-${APP_NAME}.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>10MB</maxFileSize>
+            <maxHistory>14</maxHistory>
+            <totalSizeCap>200MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%c:%t]- %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ROOT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/root/ROOT-${APP_NAME}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>logs/root/ROOT-${APP_NAME}.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>10MB</maxFileSize>
+            <maxHistory>14</maxHistory>
+            <totalSizeCap>200MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%c:%t]- %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.gmail.voronovskyi.yaroslav" level="DEBUG" additivity="false">
+        <appender-ref ref="APPLICATION"/>
+    </logger>
+    <logger name="org.springframework" level="DEBUG" additivity="false">
+        <appender-ref ref="SPRING"/>
+    </logger>
+    <root level="INFO">
+        <appender-ref ref="ROOT"/>
+    </root>
+
+</configuration>

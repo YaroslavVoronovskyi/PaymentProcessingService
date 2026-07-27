@@ -1,0 +1,4 @@
+databaseChangeLog:
+  - include:
+      file: v1-create-payments-table-changelog.yaml
+      relativeToChangelogFile: true

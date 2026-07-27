@@ -1,0 +1,72 @@
+databaseChangeLog:
+  - changeSet:
+      id: v1-create-payments-table
+      author: Yaroslav Voronovskyi
+      context: dev, prod, test
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              schemaName: public
+              tableName: payments
+      changes:
+        - createTable:
+            tableName: payments
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: external_id
+                  type: UUID
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: amount
+                  type: DECIMAL(19, 2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: currency
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: bank_transaction_id
+                  type: VARCHAR(255)
+              - column:
+                  name: failure_reason
+                  type: TEXT
+              - column:
+                  name: created
+                  type: TIMESTAMP WITH TIME ZONE
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: now()
+              - column:
+                  name: updated
+                  type: TIMESTAMP WITH TIME ZONE
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: now()
+              - column:
+                  name: version
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+        - createIndex:
+            tableName: payments
+            indexName: idx_payments_external_id
+            columns:
+              - column:
+                  name: external_id

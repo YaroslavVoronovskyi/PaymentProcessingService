@@ -1,0 +1,14 @@
+# Environment
+.env
+
+# IntelliJ
+.idea/
+
+# Maven
+target/
+
+# Docker volumes (if local folders are used)
+dbdata/
+
+# Logs
+*.log

@@ -1,0 +1,14 @@
+spring:
+
+  datasource:
+    hikari:
+      connection-timeout: 30000
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+  liquibase:
+    enabled: true
+    contexts: test
+    change-log: db/changelog/changelog-master.yaml

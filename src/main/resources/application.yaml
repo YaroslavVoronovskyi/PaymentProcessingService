@@ -1,0 +1,55 @@
+spring doc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+spring:
+  application:
+    name: payment-procesing-service
+
+  rabbitmq:
+    host: ${RABBIT_MQ_HOST:localhost}
+    port: ${RABBIT_MQ_PORT:5672}
+    username: ${RABBIT_MQ_USERNAME}
+    password: ${RABBIT_MQ_PASSWORD}
+
+  datasource:
+    url: jdbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 30
+      minimum-idle: 10
+      leak-detection-threshold: 60000
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+      default_schema: public
+    database: PostgreSQL
+    open-in-view: false
+
+  liquibase:
+    default-schema: public
+    contexts: ${SPRING_LIQUIBASE_CONTEXTS}
+    enabled: true
+    drop-first: false
+    change-log: db/changelog/changelog-master.yaml
+
+server:
+  port: 8080
+
+rabbitmq:
+  payment:
+    queue: payment.queue
+    exchange: payment.exchange
+    routing-key: payment.process
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
