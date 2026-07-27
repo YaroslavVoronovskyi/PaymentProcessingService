@@ -19,7 +19,7 @@ Payment Processing Service is a Spring Boot application that simulates payment p
  - Spring Boot Actuator
 
 ## Requirements
- - Java 21
+ - Java 21 (JAVA_HOME should point to JDK 21)
  - Maven 3.9+
  - Docker
  - Docker Compose
@@ -39,6 +39,11 @@ Copy the example environment file:
 cp .env.example .env
 ```
 
+Before running the application, export environment variables:
+```bash
+source .env
+```
+
 ## Start infrastructure
 ```bash
 docker compose up -d
@@ -54,15 +59,9 @@ mvn clean install
 
 ## Run application
 ```bash
+source .env
 mvn spring-boot:run
 ```
-
-### or
-
-```bash
-java -jar target/payment-processing-service.jar
-```
-
 
 ## Swagger
 **URL:** http://localhost:8080/swagger-ui/index.html
@@ -195,3 +194,27 @@ PaymentCreateService
 4. The consumer receives the event.
 5. FakeBankClient simulates payment processing.
 6. The payment status is updated.
+
+## Troubleshooting
+### Java version mismatch
+
+Make sure Maven uses Java 21:
+
+```bash
+java -version
+mvn -version
+```
+
+Both commands should show Java 21.
+
+If multiple JDK versions are installed on macOS, configure JAVA_HOME:
+
+```bash
+export JAVA_HOME=$(/usr/libexec/java_home -v 21)
+export PATH=$JAVA_HOME/bin:$PATH
+```
+
+To apply it permanently, add these lines to ~/.zshrc:
+```bash
+nano ~/.zshrc
+```
