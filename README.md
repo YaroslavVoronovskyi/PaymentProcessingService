@@ -29,7 +29,7 @@ Payment Processing Service is a Spring Boot application that simulates payment p
 ```bash
 git clone https://github.com/YaroslavVoronovskyi/PaymentProcessingService.git
 
-cd payment-processing-service
+cd PaymentProcessingService
 ```
 
 ## Configuration
@@ -46,14 +46,6 @@ docker compose up -d
 ### This command starts:
 - PostgreSQL
 - RabbitMQ
-
-### RabbitMQ Management UI:
-**URL:** http://localhost:15672
-
-**Username:** guest
-
-**Password:** guest
-
 
 ## Build project
 ```bash
@@ -74,6 +66,14 @@ java -jar target/payment-processing-service.jar
 
 ## Swagger
 **URL:** http://localhost:8080/swagger-ui/index.html
+
+
+## RabbitMQ Management UI:
+**URL:** http://localhost:15672
+
+**Username:** guest
+
+**Password:** guest
 
 
 ## Run tests
