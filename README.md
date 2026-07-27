@@ -27,7 +27,7 @@ Payment Processing Service is a Spring Boot application that simulates payment p
 
 ## Clone Project
 ```bash
-git clone <repository-url>
+git clone https://github.com/YaroslavVoronovskyi/PaymentProcessingService.git
 
 cd payment-processing-service
 ```
